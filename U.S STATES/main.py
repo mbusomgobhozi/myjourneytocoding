@@ -62,10 +62,8 @@ while game_is_on:
                 guess.write(f"{answer_state}")
         if answer_state == "Exit":
             states = data.state.to_list()
-            missing_states = []
-            for state in states:
-                if state not in guesses:
-                    missing_states.append(state)
+            # shortened the code by a few lines all good using list comprehension
+            missing_states = [state for state in states if state not in guesses]
             new_data = pandas.DataFrame(missing_states)
             new_data.to_csv("states_to_learn.csv", index=False)
             score = 51
